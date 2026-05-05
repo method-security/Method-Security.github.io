@@ -11,6 +11,11 @@ permissions:
   contents: read
 
 jobs:
+  ratchet:
+    name: 🔩 Ratchet Lint
+    uses: ./.github/workflows/ratchet.yml
+    secrets: inherit
+
   test-docs:
     name: 📙 Test docs
     uses: ./.github/workflows/test-docs.yml
@@ -20,6 +25,7 @@ jobs:
     name: ✅ Check
     if: always()
     needs:
+      - ratchet
       - test-docs
 
     runs-on: ubuntu-latest
